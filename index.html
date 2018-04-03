@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Semantic-UI</title>
+    <title>Giffy Generator</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,17 +24,7 @@
           <a href='https://vasquezlf.github.io/hangman' class="item">Hangman</a>
           <a href='https://vasquezlf.github.io/crystalcollector' class="item">Crystal Collector</a>
           <a href='https://vasquezlf.github.io/triviagame' class="item">Trivia Game</a>
-          <div class="ui left pointing dropdown item _portfolio-coursework-submenu">
-            <i class="dropdown icon"></i>
-            Homework Assignments
-            <div class="menu _portfolio-coursework-submenu-list">
-              <div class="item">Inbox</div>
-              <div class="item">Inbox</div>
-              <div class="item">Inbox</div>
-            </div>
-          </div>
-
-          
+          <a href='https://vasquezlf.github.io/giffygenerator' class="item">Giffy Generator</a>
         </div>
       </div>
     </div>
@@ -44,104 +34,91 @@
         Menu
       </a>
       <div class="right menu">
-          <a class="item">Lorenzo Vasquez | Full-Stack Developer</a>
-        </div>
+        <a class="item">Lorenzo Vasquez | Full-Stack Developer</a>
+      </div>
     </div>
     <div class="pusher">  <!-- CONTENT being pushed aside when menu is toggled -->
-
-      <!-- HEADER/BODY -->
-    <main class="ui grid container site-content">
-        <div class="ui stackable grid padded centered">
-          <!-- <div class="row stretched"> -->
-            <!-- ************* LEFT COL ****************** -->
-            <div class="ui ten wide column ">  
-              <!-- ABOUT ME BOX -->
-                <div class="ui piled segment _verticalFlexbox">
-                    <div class="item">
-                        <div class="ui medium image column floated left">
-                          <img src="assets/images/profile-1.jpeg">
-                        </div>
-                          <h1 class="header">About Me</h1>
-                          <div class="description">
-                            <p class="_largeText"><b>I’m an aspiring web developer</b> who loves everything about the web. I've lived in lots of different places 
-                              and have worked in lots of different jobs. I’m excited to bring my life experience to the process of building fantastic 
-                              looking websites. I am life-long learner who's always interested in expanding my skills. 
-                            </p>
-                            <p class="_largeText">
-                                When I have free time I like to exercise, paint, skiing, hiking, travelling, or simply jamming out with my uke.
-                            </p>
-                          </div>
-                      </div>
-                     <!-- ABOUT ME second row -->
-                     <div class="ui divider"></div>
-                      <div class="ui internally celled grid relaxed _marginTopIncrease">
-                        <div class="row stretched ui two column grid ">
-                            <div class="column">
-                              <div class="item">
-                                <div class="content">
-                                  <h5 class="header">Learning and Growing Skills In:</h5>
-                                  <div class="ui list">
-                                      <div class="item">Apples</div>
-                                      <div class="item">Pears</div>
-                                      <div class="item">Oranges</div>
-                                    </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="column">
-                                <h5 class="header">Seeking Following Opportunities:</h5>
-                                <div class="ui list">
-                                    <div class="item">Apples</div>
-                                    <div class="item">Pears</div>
-                                    <div class="item">Oranges</div>
-                                  </div>
-                            </div>
-                          </div>
-                        </div>
-                  </div>
-                  <!-- // ABOUT ME BOX -->
-            </div>
-
-            <!-- ************* RIGHT COL ****************** -->
-            <div class="ui six wide column  ">
-                  <div class="ui piled segment _verticalStretch">
-                      <h3 class="ui header">Dynamic Content (Coming Soon)</h3>
-                        <p>Eu quo homero blandit intellegebat. Incorrupte consequuntur mei id.</p>
-                    </div>
-                <div class="ui piled segment _verticalStretchLess ">
-                    <div class="ui fluid _centerButtons">
-                    <h3 class="ui header fluid center aligned">Connect</h3>
-                    </div>
-                    <div class="ui fluid _centerButtons">
-                      <button class="ui massive circular linkedin icon button">
-                          <i class="linkedin icon"></i>
-                        </button>
-                        <button class="ui massive circular github icon button">
-                          <i class="github icon"></i>
-                        </button>
-                        <button class="ui massive circular facebook icon button">
-                          <i class="facebook icon"></i>
-                        </button>
-                    </div>
-                    <div class="ui fluid _centerButtons ">
-                    <div class="ui animated fade button" tabindex="0">
-                        <div class="visible content _sendMessageButton">Send Message</div>
-                        <div class="hidden content">
-                          vasquez.lf@gmail.com
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                <!-- </div> -->
-                
+      
+        <main class="ui centered container grid">
+          <!-- 1.  Header -->
+          <div class="row">
+            <div class="ui eight wide column">
+              <h1 class="ui centered  header ">Giffy Generator</h1>
             </div>
           </div>
 
-      </div>  <!-- END ui.grid -->
-    </main>  <!-- END .ui.container -->
-  </div>  <!-- END **** div.pusher **** -->
+          <div class="row">
+            <div class="ui divided stackable grid piled segment" id="gallery-giffy">
+                <!-- 2. Dynamically Insert Giffy Gallery Here -->
+                
+                <!-- ********** TEST DATA ONLY *********** -->
+                <!-- <div class="eight wide column">
+                  <div class="ui image" >
+                    <button class="ui large circular icon button" id="button-copy" ><i class="paste icon"></i></button>
+                    <img  src="https://media3.giphy.com/media/l0FebXMK2OeqApj44/200w.gif?cid=e1bb72ff5ac06403372e45582e036089">
+                    <div class="content">
+                        Rating: <span id="span-rating">G</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="eight wide column">
+                  <div class="ui image">
+                    <img src="https://media3.giphy.com/media/l0FebXMK2OeqApj44/200w_s.gif?cid=e1bb72ff5ac06403372e45582e036089">
+                    <div class="ui content left floated">
+                        Rating:
+                    </div>
+                  </div>
+                </div>
+
+                <div class="eight wide column ">
+                    <div class="ui image">
+                        <img id='test-image' src="https://media3.giphy.com/media/l0FebXMK2OeqApj44/200w_s.gif?cid=e1bb72ff5ac06403372e45582e036089">
+                        <div class="content">
+                            Rating:
+                        </div>
+                      </div>
+                </div>
+
+                <div class="eight wide column ">
+                    <div class="ui image">
+                        <img src="https://media3.giphy.com/media/l0FebXMK2OeqApj44/200w_s.gif?cid=e1bb72ff5ac06403372e45582e036089">
+                        <div class="content">
+                            Rating:
+                        </div>
+                      </div>
+                </div> -->
+                <!-- ********** END TEST DATA ONLY *********** -->
+              
+              
+            </div>
+          </div>
+          <!-- END | giffy gallery -->
+
+            <!-- 3. Input and Buttons -->
+            <form class="ui form segment">
+                <h3 class="ui dividing header">Press to Play</h3>
+                <div class="inline fields">
+                  <input id="search-input" type="text" name="search-input" placeholder="Search Giphy">
+                  <div class="field">
+                      <input type="hidden" name="giffy-retrieve">
+                      <select id="giffy-number" class="ui dropdown">
+                          <option value="4">4</option>
+                          <option value="12">12</option>
+                          <option value="20">20</option>
+                      </select>
+                  </div>
+                  <button class="ui small button blue" type="submit" id="search-button">Search</button>
+                  <button class="ui small button blue" type="submit" id="clear-button" >Clear</button>
+                </div>
+              </form>
+
+          </main>  
+        <!-- END grid container -->
+      <!-- END UI container -->
+
+    </div>  <!-- END **** div.pusher **** -->
         
-    </div>  
 
     
     <!-- jQuery -->
@@ -149,6 +126,6 @@
     <!-- SemanticUI JS -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
     <!-- Custom JavaScript -->
-    <script type="text/javascript" src="assets/javascript/main.js"></script>
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
   </body>
 </html>

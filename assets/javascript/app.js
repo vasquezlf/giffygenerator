@@ -26,7 +26,7 @@ $(document).ready(function(){
         $('.ui.sidebar').sidebar('toggle')
     })
 
-    var queryURLBase = "http://api.giphy.com/v1/gifs/search"
+    var queryURLBase = "https://api.giphy.com/v1/gifs/search"
     //add API key param
     var apiKey =  "dc6zaTOxFJmzC"
     

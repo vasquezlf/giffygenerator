@@ -34,22 +34,24 @@ $(document).ready(function(){
     // Hide circular buttons
     $('.ui.circular.button').css('visibility', 'hidden')
 
+
     // *********************************************************
 
     // 1. Event listener
-    $('#search-button').on('click', function (event) {
+    $('#search-button').on('click touchstart', function (event) {
         event.preventDefault()
         //***** Setup Variables ******/
         // Get value from search-term
         var giffyTerm = $('#search-input').val()
         var giffyLimit = $('#giffy-number').val()
-        
         //***** *************** ******/
         queryURLBase += '?' + $.param({
             'api_key':apiKey,
             'q': giffyTerm
         })
         console.log(queryURLBase)
+
+
 
         $.ajax({
             url: queryURLBase,
@@ -60,20 +62,6 @@ $(document).ready(function(){
             var numberOfGiffys = response.data.length
 
             for (var i = 0; i < giffyLimit; i++){
-            ////// 2A-v1. Parse through the response and store in variables
-                // var giffyObject = response.data[i]
-            ////// 2A-v2. Parse through the response and randomly pick giffys
-            // var giffyObject = ''
-            // var arrayRandomGiffys = []
-            // var arrayRandomIdeces = randomNoRepeat(numberOfGiffys)
-            // console.log('I AM HERE: ' + arrayRandomIdeces)
-            // arrayRandomIdeces.forEach(function(randomIndex){
-            //     arrayRandomGiffys = response.data[randomIndex]
-            // })
-
-            // giffyObject = arrayRandomGiffys[i]
-
-
             ////// 2A-v1. Parse through the response and store in variables
                 var randomNumber = Math.floor(Math.random() * numberOfGiffys)
                 var giffyObject = response.data[randomNumber]
@@ -115,109 +103,98 @@ $(document).ready(function(){
                 //// Create span
                 var $giffyContentSpan = $('<span id="span-rating">').text(giffyRating)
 
+                
                 ////// 2C. Append elements to proper containers
                 // Attach div.row
                 $('#gallery-giffy').prepend($giffyRow)
                 /// Attach div.ui.image
-                $($giffyRow).append($giffyImage)
+                $($giffyRow).hide().append($giffyImage).delay(300).slideDown()
                 //// Attach copy-to-clipboard button
                 $($giffyImage).append($giffyButton)
+                
                 //// Attach img
                 $($giffyImage).append($giffyImg)
+                
                 //// Attach div.content
                 $($giffyImage).append($giffyContent)
                 //// Attach span to content
                 $($giffyContent).append($giffyContentSpan)
-
-               
             }
-
         })
-   
     })
-
     
     
-    // Method: 1
+    // Add functionality: Animate and Still giffys
     $('#gallery-giffy').on('mouseover', 'img', function() {
-        
         $(this).attr('src', $(this).data('still'))
         $(this).attr('data-state', false)
-        
     })
-
     $('#gallery-giffy').on('mouseout', 'img', function() {
         $(this).attr('src', $(this).data('animate'))
         $(this).attr('data-state', true)
-       
     })
-
-    // Method: 2 - Show and hide circular buttons -- -how to make this work?
-    // $(document).on({
-    //     mouseover: function() {
-    //         // Show circular buttons when hovering over image
-    //         $($(this).children().first()).css('visibility', 'visible')
-    //         console.log($(this).children().first())
-    //     },
-    //     mouseleave: function() {
-    //         //  Hide circular buttons when done hovering over image
-    //         $($(this).children().first()).css('visibility', 'hidden')
-    //         console.log($(this).children().first())
-            
-    //     }, 
-    // })
 
 
     // Add functionality: Show/Hide clipboard button
     $(document).on('mouseover', 'div.ui.image', function() {
-        
         $($(this).children().first()).css('visibility', 'visible')
     })
-
     $(document).on('mouseout', 'div.ui.image', function() {
-       //  Hide circular buttons when done hovering over image
+       ////  Hide circular buttons when done hovering over image
        $($(this).children().first()).css('visibility', 'hidden')
     })
 
+
     // Add functionality: Make clipboard button work. Copy animated URL
-    $(document).on('click', '#button-copy', function(){
+    //// Step 1: Add event listener on button
+    $(document).on('click touchstart', '#button-copy', function(event){
         var copiedURL = $(this).next().data('animate')
         console.log(copiedURL)
-
-        var $temp = $('<input>')
-        $("body").append($temp);
-        $temp.val($(copiedURL).text()).select();
-        // $(copiedURL).select()
-        document.execCommand("copy")
-        $temp.remove();
-        // copyText.select();
-        // document.execCommand("Copy");
-        // alert("Copied the text: " + copyText.value);
-
+        SelectText(copiedURL);
     })
 
+    //// Step 2: Define selection
+    function SelectText(copiedURL) {
+        var doc = document
+            , text = copiedURL
+            , range, selection
+        ;    
+        if (doc.body.createTextRange) {
+            range = document.body.createTextRange();
+            range.moveToElementText(text);
+            range.select();
+        } else if (window.getSelection) {
+            console.log(text)
+            selection = window.getSelection();        
+            range = document.createRange();
+            let node = $('<div>')
+            let pTag = document.createElement('p')
+            pTag.innerText = copiedURL
+            // Object.assign(pTag.style, {display: 'none'})
+            document.body.append(pTag)
+            // let ptag = $('<p>').text(copiedURL)
+            console.log(pTag)
+            console.log(node)
+            range.selectNodeContents(pTag);
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+        document.execCommand('copy')
+    }
+
     // Clear button functionality
-    $(document).on('click', '#clear-button', function clearButton (){
+    $(document).on('click touchstart', '#clear-button', function clearButton (){
         $('div.ui.divided.grid').empty()
     })
 
 
-    
-    // function randomNoRepeat(maxNumber) {
-    //     var randomNumber = 0
-    //     var arrayRandomNumbers = []
-
-    //     for (var i = 0; i < maxNumber; i++) {
-    //         randomNumber = Math.floor(Math.random() * maxNumber)
-    //         arrayRandomNumbers.push(randomNumber)
-    //         // Check for repeat number and subtract 1 from i so that iteration won't count
-    //         if(arrayRandomNumbers.includes(randomNumber) && arrayRandomNumbers.length > 1 ) {
-    //             arrayRandomNumbers.pop(randomNumber)
-    //             i--
-    //         }
-    //         console.log(arrayRandomNumbers)
-    //     }
-
-    //     return arrayRandomNumbers
-    // }
+//     $('.ui.icon.button')
+//   .popup({
+//     on    : 'click',
+//     boundary: '.ui.icon.button',
+//     // position : 'right center',
+//     target   : 'div.ui.divided.grid',
+//     title    : '.ui.icon.button',
+//     // content  : 'My favorite dog would like other dogs as much as themselves'
+//   })
 })

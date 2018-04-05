@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+
+  <div id="selectme"><p>Some text goes here!</p><p>Moar text!</p></div>
+  <p class="click">Click me!</p>
+
+  <script>
+    
+    function SelectText(element) {
+        var doc = document
+            , text = doc.getElementById(element)
+            , range, selection
+        ;    
+        if (doc.body.createTextRange) {
+            range = document.body.createTextRange();
+            range.moveToElementText(text);
+            range.select();
+        } else if (window.getSelection) {
+            selection = window.getSelection();        
+            range = document.createRange();
+            console.log('text:',text)
+            range.selectNodeContents(text);
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+
+
+        document.execCommand('copy')
+    }
+
+    document.onclick = function(e) {    
+        if (e.target.className === 'click') {
+            SelectText('selectme');
+        }
+    };
+  </script>
+  
+</body>
+</html>

@@ -16,6 +16,14 @@
     visibility: hidden;
 }
 
+i.info.icon {
+    position: absolute;
+    top: 7%;
+    right: 1%;
+    opacity: .75;
+}
+
+
 
 /****************************** NAV ***********************************/
 
